@@ -12,10 +12,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//auth
+Route::post('/login','AuthController@login');
+Route::get('/logout','AuthController@logout');
+Route::get('/register','AuthController@viewRegister');
+Route::post('/register','AuthController@register');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','HomeController@home');
 
-Auth::routes();
+Route::get('admin/dashboard', 'HomeController@adminHome')->name('admin.home')->middleware('checkRole:admin');
+
 
